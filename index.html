@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WebXR A-Frame GLB 인터랙션 (크기 수정)</title>
+  <title>WebXR A-Frame 이동 속도 조절</title>
 
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
 
@@ -64,11 +64,7 @@
     <a-entity light="type: ambient; intensity: 0.8"></a-entity>
     <a-entity light="type: directional; intensity: 1" position="3 6 2"></a-entity>
 
-    <!--
-      🔥 핵심 수정 부분
-      scale 값을 크게 변경하면 모델이 커집니다.
-      기본: 1 1 1 → 변경: 3 3 3 (원하면 더 키우세요)
-    -->
+    <!-- 모델 -->
     <a-entity
       class="clickable"
       gltf-model="#myModel"
@@ -77,13 +73,23 @@
       custom-interaction>
     </a-entity>
 
-    <!-- 카메라 -->
+    <!--
+      🔥 핵심: 이동 속도 조절
+      acceleration 값을 낮추면 이동 속도가 느려집니다.
+
+      기본값: 65 (굉장히 빠름)
+      추천값:
+      - 10 : 적당
+      - 5  : 천천히
+      - 2  : 아주 천천히 (수업용 추천)
+    -->
     <a-entity position="0 1.6 3">
       <a-entity
         camera
         look-controls
-        wasd-controls="acceleration: 20">
+        wasd-controls="acceleration: 5">
 
+        <!-- PC 클릭 -->
         <a-cursor raycaster="objects: .clickable"></a-cursor>
       </a-entity>
 
